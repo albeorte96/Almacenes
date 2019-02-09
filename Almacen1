@@ -1,0 +1,108 @@
+
+public class Almacen1 {
+
+	static private final int LIBRE = 0;
+	// Array con los valores almacenados
+	private int tvalores[];
+	private int valoresAlmacenados = 0;
+	private String valoresTabla;
+	
+	// Constructores sin parÃ¡metros creo una tabla de 10 elementos 
+	public Almacen1(){
+		this(10);  // Llamo al constructor con parÃ¡metros
+	}
+
+	// Constructor donde se fija tamaÃ±o mÃ¡ximo del AlmacÃ©n
+	public Almacen1( int tamaÃ±o){
+		tvalores = new int [tamaÃ±o];
+		init();
+	}
+	
+	// Pone todas las posiciones a LIBRES
+	public void init (){
+		for (int i = 0; i < tvalores.length; i++) {
+			tvalores[i] = Almacen1.LIBRE;
+		}
+		valoresAlmacenados = 0;
+	}
+	
+	// Muestra una cadena con los valores de la tabla
+	public String toString (){
+		this.valoresTabla = "";
+		for (int i = 0; i < this.tvalores.length; i++) {
+			this.valoresTabla = this.valoresTabla + this.tvalores[i];
+		}
+		return this.valoresTabla;
+	}
+	
+	// Devuelve el nÃºmeros de posiciones libres
+	public int numPosicionesLibres(){
+		int libres = 0;
+		for (int i = 0; i < this.tvalores.length ; i++) {
+			if (this.tvalores[i] == 0) {
+				libres++;
+			}
+		}
+		return libres;
+	}
+	
+	// Devuelve el nÃºmero de posiones ocupadas
+	public int numPosicionesOcupadas(){
+		int ocupadas = 0;
+		for (int i = 0; i < this.tvalores.length ; i++) {
+			if (this.tvalores[i] != 0) {
+				ocupadas++;
+			}
+		}
+		return ocupadas;
+	}
+	
+	// Devuelve verdadero o falso si estÃ¡ almacenado el valor en la tabla
+	public boolean estaValor (int num){
+		boolean almacenado = false;
+		for (int i = 0; i < this.tvalores.length; i++) {
+			if (this.tvalores[i] == num) {
+				almacenado = true;
+				break;
+			}
+		}
+	return almacenado;
+	}
+	
+	// Almacena el valor el la tabla, devuelve false si no puede almacenarlo
+	public boolean ponValor (int num){
+		boolean almacenarvalor = false;
+		for(int i = 0; i<this.tvalores.length; i++) {
+			if(this.tvalores[i] == 0) {
+				this.tvalores[i] = num;
+				almacenarvalor=true;
+				break;
+			}
+		}
+	return almacenarvalor;
+	}
+	
+	// Elimina el elemento de la tabla, si no esta devuelve false
+	public boolean sacarValor (int num){	
+		boolean eliminarvalor = false;
+		for (int i = 0 ; i < this.tvalores.length; i++) {
+			if(this.tvalores[i] == num) {
+				this.tvalores[i] = 0;
+				eliminarvalor = true;
+				break;
+			}
+		}
+		return eliminarvalor;
+	}
+      // Indica si el almacÃ©n esta lleno
+	public boolean estaLleno (){	
+		boolean lleno = true;
+		for (int i = 0; i < this.tvalores.length; i++) {
+			if (this.tvalores[i] == 0) {
+				lleno = false;
+				break;
+			}
+		}
+		return lleno;
+	}
+}
